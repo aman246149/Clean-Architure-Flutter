@@ -6,8 +6,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
-import '../../core/images/app_images.dart';
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -38,7 +36,6 @@ class _SplashScreenState extends State<SplashScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SvgPicture.asset(AppImages.splashImage),
           LoadingAnimationWidget.twistingDots(
             leftDotColor: const Color.fromARGB(255, 255, 255, 255),
             rightDotColor: const Color(0xFFEA3799),
