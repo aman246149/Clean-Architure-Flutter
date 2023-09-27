@@ -27,7 +27,7 @@ class SignUpEvent extends AuthEvent {
   final String mobileNumber;
   final String password;
 
-  SignUpEvent(
+  const SignUpEvent(
       {required this.name,
       required this.email,
       required this.mobileNumber,
@@ -37,7 +37,7 @@ class SignUpEvent extends AuthEvent {
 class GetVerificationCodeEvent extends AuthEvent {
   final String dataForVerification;
 
-  GetVerificationCodeEvent(this.dataForVerification);
+  const GetVerificationCodeEvent(this.dataForVerification);
 }
 
 class VerifyCodeEvent extends AuthEvent {
@@ -45,7 +45,7 @@ class VerifyCodeEvent extends AuthEvent {
   final String source;
   final String userName;
 
-  VerifyCodeEvent(
+  const VerifyCodeEvent(
       {required this.code, required this.source, required this.userName});
 }
 
@@ -53,18 +53,18 @@ class SignInEvent extends AuthEvent {
   final String email;
   final String password;
 
-  SignInEvent({required this.email, required this.password});
+  const SignInEvent({required this.email, required this.password});
 }
 
 class ForgotPasswordEvent extends AuthEvent {
   final String email;
 
-  ForgotPasswordEvent(this.email);
+  const ForgotPasswordEvent(this.email);
 }
 
 class VerifyNewPasswordEvent extends AuthEvent {
   final String code;
   final String newPassword;
 
-  VerifyNewPasswordEvent({required this.code, required this.newPassword});
+  const VerifyNewPasswordEvent({required this.code, required this.newPassword});
 }

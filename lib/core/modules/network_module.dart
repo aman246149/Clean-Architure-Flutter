@@ -1,9 +1,7 @@
 import 'dart:developer';
 
 import 'package:architecture/core/constants/app_constants.dart';
-import 'package:architecture/core/routes/router.gr.dart';
 import 'package:dio/dio.dart';
-import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:localstore/localstore.dart';
 

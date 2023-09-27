@@ -34,7 +34,7 @@ class SignUpSuccessState extends AuthState {}
 class AuthErrorState extends AuthState {
   final String error;
 
-  AuthErrorState(this.error);
+  const AuthErrorState(this.error);
 
 }
 

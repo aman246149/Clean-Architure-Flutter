@@ -1,32 +1,42 @@
+import 'package:architecture/core/theme/apptheme.dart';
 import 'package:flutter/material.dart';
 
-import 'custom_text.dart';
+import '../../theme/app_color.dart';
 
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton({
     super.key,
     required this.text,
-    this.onTap,
+    this.onTap,  this.icon, this.padding,
   });
   final String text;
   final Function()? onTap;
+  final Widget? icon;
+  final EdgeInsets? padding;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
+    return Padding(
+      padding:padding?? const EdgeInsets.symmetric(horizontal: 20),
       child: TextButton(
           style: TextButton.styleFrom(
               backgroundColor: onTap != null
-                  ? const Color(0xffE8AE56)
+                  ? AppColors.primary
                   : Colors.white.withOpacity(0.51)),
           onPressed: () {
             if (onTap != null) onTap!();
           },
-          child: TextWidget(
-            text: text,
-            color: const Color(0xff111314),
-            fontSize: 16,
-          )),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(text,style: AppTheme.bodyText2,),
+              if(icon!=null)...[
+              const SizedBox(width: 10,),
+              icon!
+
+              ]
+            ],
+          )
+          ),
     );
   }
 }

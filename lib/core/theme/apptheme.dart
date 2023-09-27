@@ -33,28 +33,30 @@ class AppTheme {
   static TextStyle appBarTitleTheme = const TextStyle();
 
   static TextTheme textTheme = TextTheme(
-      headline1: headline1,
-      headline6: headline6,
-      bodyText1: bodyText1,
-      bodyText2: bodyText2);
+        bodyLarge: bodyText1,
+        bodyMedium: bodyText2,
+        bodySmall: bodyText3,
+        
+      
+      );
 
-  static TextStyle headline1 = GoogleFonts.workSans(
-      fontWeight: FontWeight.w700, fontSize: 34, color: Colors.white);
 
-  static TextStyle headline6 = GoogleFonts.workSans(
-      fontWeight: FontWeight.w600, fontSize: 12, color: Colors.black);
+  static TextStyle bodyText1 = GoogleFonts.outfit(
+      fontWeight: FontWeight.w600, fontSize: 32, color: Colors.white);
 
-  static TextStyle bodyText1 = GoogleFonts.workSans(
-      fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white);
+  static TextStyle bodyText2 = GoogleFonts.outfit(
+      fontWeight: FontWeight.w600, fontSize: 16, color: Colors.white);
 
-  static TextStyle bodyText2 = GoogleFonts.workSans(
-      fontWeight: FontWeight.w400, fontSize: 12, color: Colors.white);
+  static TextStyle bodyText3 = GoogleFonts.outfit(
+      fontWeight: FontWeight.w400, fontSize: 14, color: Colors.white);
+
+
 
   static ButtonStyle primaryTextButtonStyle = TextButton.styleFrom(
       foregroundColor: Colors.white,
       padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 23),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-      backgroundColor: const Color(0XFF2689FB),
+      backgroundColor: AppColors.primary,
       textStyle: buttonTextStyle);
 
   static const buttonTextStyle =

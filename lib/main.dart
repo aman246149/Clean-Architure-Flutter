@@ -1,30 +1,30 @@
+import 'dart:async';
+
 import 'package:architecture/core/bloc/auth/auth_bloc.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:bloc/bloc.dart';
-import 'package:flutter/material.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
-import 'core/blocobserver/bloc_observer.dart';
 import 'core/dependencyInjection/di.dart';
 import 'core/routes/router.gr.dart';
 import 'core/theme/apptheme.dart';
-import 'package:firebase_core/firebase_core.dart';
 
-import 'firebase_options.dart';
 
-void main() async {
-  EquatableConfig.stringify = true;
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
 
+Future<void> main() async {
+  EquatableConfig.stringify=true;
+  BindingBase.debugZoneErrorsAreFatal = true;
   await AppContainer.init();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  BlocOverrides.runZoned(() => runApp(MyApp()),
-      blocObserver: GetIt.I<AppBlocObserver>());
+  runZonedGuarded(() {
+    runApp( MyApp());
+  }, (e, s) {
+    debugPrint('catches error of first error-zone.$e');
+  });
 }
+
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp.router(
         title: 'Flutter Demo',
         routerDelegate: AutoRouterDelegate(_appRouter,
-            initialRoutes: [const LoginScreenRoute()]),
+            initialRoutes: [const OnBoardingScreenRoute()]),
         routeInformationParser: _appRouter.defaultRouteParser(),
         theme: AppTheme.theme,
         debugShowCheckedModeBanner: false,

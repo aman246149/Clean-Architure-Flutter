@@ -11,58 +11,68 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:architecture/features/auth/presentation/screens/login.dart'
-    as _i2;
-import 'package:architecture/features/auth/presentation/screens/signup.dart'
+import 'package:architecture/features/auth/screens/login.dart' as _i2;
+import 'package:architecture/features/auth/screens/verify_otp.dart' as _i4;
+import 'package:architecture/features/onboarding/screens/onboarding.dart'
     as _i3;
 import 'package:architecture/features/splashScreen/splash_screen.dart' as _i1;
-import 'package:auto_route/auto_route.dart' as _i4;
-import 'package:flutter/material.dart' as _i5;
+import 'package:auto_route/auto_route.dart' as _i5;
+import 'package:flutter/material.dart' as _i6;
 
-class AppRouter extends _i4.RootStackRouter {
-  AppRouter([_i5.GlobalKey<_i5.NavigatorState>? navigatorKey])
+class AppRouter extends _i5.RootStackRouter {
+  AppRouter([_i6.GlobalKey<_i6.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i4.PageFactory> pagesMap = {
+  final Map<String, _i5.PageFactory> pagesMap = {
     SplashScreenRoute.name: (routeData) {
-      return _i4.AdaptivePage<dynamic>(
+      return _i5.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i1.SplashScreen(),
       );
     },
     LoginScreenRoute.name: (routeData) {
-      return _i4.AdaptivePage<dynamic>(
+      return _i5.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i2.LoginScreen(),
       );
     },
-    SignUpScreenRoute.name: (routeData) {
-      return _i4.AdaptivePage<dynamic>(
+    OnBoardingScreenRoute.name: (routeData) {
+      return _i5.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i3.SignUpScreen(),
+        child: const _i3.OnBoardingScreen(),
+      );
+    },
+    VerifyOtpRoute.name: (routeData) {
+      return _i5.AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const _i4.VerifyOtp(),
       );
     },
   };
 
   @override
-  List<_i4.RouteConfig> get routes => [
-        _i4.RouteConfig(
+  List<_i5.RouteConfig> get routes => [
+        _i5.RouteConfig(
           '/#redirect',
           path: '/',
           redirectTo: '',
           fullMatch: true,
         ),
-        _i4.RouteConfig(
+        _i5.RouteConfig(
           SplashScreenRoute.name,
           path: '',
         ),
-        _i4.RouteConfig(
+        _i5.RouteConfig(
           LoginScreenRoute.name,
           path: '',
         ),
-        _i4.RouteConfig(
-          SignUpScreenRoute.name,
+        _i5.RouteConfig(
+          OnBoardingScreenRoute.name,
+          path: '',
+        ),
+        _i5.RouteConfig(
+          VerifyOtpRoute.name,
           path: '',
         ),
       ];
@@ -70,7 +80,7 @@ class AppRouter extends _i4.RootStackRouter {
 
 /// generated route for
 /// [_i1.SplashScreen]
-class SplashScreenRoute extends _i4.PageRouteInfo<void> {
+class SplashScreenRoute extends _i5.PageRouteInfo<void> {
   const SplashScreenRoute()
       : super(
           SplashScreenRoute.name,
@@ -82,7 +92,7 @@ class SplashScreenRoute extends _i4.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.LoginScreen]
-class LoginScreenRoute extends _i4.PageRouteInfo<void> {
+class LoginScreenRoute extends _i5.PageRouteInfo<void> {
   const LoginScreenRoute()
       : super(
           LoginScreenRoute.name,
@@ -93,13 +103,25 @@ class LoginScreenRoute extends _i4.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i3.SignUpScreen]
-class SignUpScreenRoute extends _i4.PageRouteInfo<void> {
-  const SignUpScreenRoute()
+/// [_i3.OnBoardingScreen]
+class OnBoardingScreenRoute extends _i5.PageRouteInfo<void> {
+  const OnBoardingScreenRoute()
       : super(
-          SignUpScreenRoute.name,
+          OnBoardingScreenRoute.name,
           path: '',
         );
 
-  static const String name = 'SignUpScreenRoute';
+  static const String name = 'OnBoardingScreenRoute';
+}
+
+/// generated route for
+/// [_i4.VerifyOtp]
+class VerifyOtpRoute extends _i5.PageRouteInfo<void> {
+  const VerifyOtpRoute()
+      : super(
+          VerifyOtpRoute.name,
+          path: '',
+        );
+
+  static const String name = 'VerifyOtpRoute';
 }

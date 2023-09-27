@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 @lazySingleton
 class Loader {
@@ -11,7 +10,7 @@ class Loader {
       loaderShowing = true;
       showDialog(
           context: context,
-          builder: ((context) => LoadingWidget()),
+          builder: ((context) => const LoadingWidget()),
           barrierDismissible: false);
     }
   }
@@ -25,16 +24,14 @@ class Loader {
 }
 
 class LoadingWidget extends StatelessWidget {
+  const LoadingWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
         child: SizedBox(
       width: 50,
-      child: LoadingAnimationWidget.twistingDots(
-        leftDotColor: const Color.fromARGB(255, 255, 255, 255),
-        rightDotColor: const Color(0xFFEA3799),
-        size: 50,
-      ),
+      child: Center(child: CircularProgressIndicator(),),
     ));
   }
 }
