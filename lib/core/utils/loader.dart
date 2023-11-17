@@ -31,7 +31,9 @@ class LoadingWidget extends StatelessWidget {
     return const Center(
         child: SizedBox(
       width: 50,
-      child: Center(child: CircularProgressIndicator(),),
+      child: Center(
+        child: LinearProgressIndicator(),
+      ),
     ));
   }
 }

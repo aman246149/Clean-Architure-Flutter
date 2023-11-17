@@ -1,4 +1,4 @@
-package com.Baap_of_all_parties
+package com.picatech
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -7,6 +7,10 @@ abstract class AuthEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class CheckUserAuthEvent extends AuthEvent {}
+
+class LogOutAuthEvent extends AuthEvent {}
+
 class UpdateCurrentIndexEvent extends AuthEvent {
   final int index;
   const UpdateCurrentIndexEvent(this.index);
@@ -15,10 +19,10 @@ class UpdateCurrentIndexEvent extends AuthEvent {
   List<Object> get props => [index];
 }
 
-class ShowHideBottamBarEvent extends AuthEvent {
+class ShowHideBottomBarEvent extends AuthEvent {
   final bool isShow;
 
-  const ShowHideBottamBarEvent(this.isShow);
+  const ShowHideBottomBarEvent(this.isShow);
 }
 
 class SignUpEvent extends AuthEvent {
@@ -34,21 +38,6 @@ class SignUpEvent extends AuthEvent {
       required this.password});
 }
 
-class GetVerificationCodeEvent extends AuthEvent {
-  final String dataForVerification;
-
-  const GetVerificationCodeEvent(this.dataForVerification);
-}
-
-class VerifyCodeEvent extends AuthEvent {
-  final String code;
-  final String source;
-  final String userName;
-
-  const VerifyCodeEvent(
-      {required this.code, required this.source, required this.userName});
-}
-
 class SignInEvent extends AuthEvent {
   final String email;
   final String password;
@@ -56,15 +45,41 @@ class SignInEvent extends AuthEvent {
   const SignInEvent({required this.email, required this.password});
 }
 
-class ForgotPasswordEvent extends AuthEvent {
-  final String email;
+class VerifyOtpEvent extends AuthEvent {
+  final String otp;
 
-  const ForgotPasswordEvent(this.email);
+  const VerifyOtpEvent({required this.otp});
 }
 
-class VerifyNewPasswordEvent extends AuthEvent {
-  final String code;
-  final String newPassword;
+class ResendOtpEvent extends AuthEvent {}
 
-  const VerifyNewPasswordEvent({required this.code, required this.newPassword});
+class SignInWithGoogleEvent extends AuthEvent {}
+
+class UpdateBottomNavigationIndex extends AuthEvent {
+  final int index;
+  const UpdateBottomNavigationIndex(this.index);
+}
+
+class SaveReferIdEvent extends AuthEvent {
+  final String referId;
+
+  const SaveReferIdEvent({required this.referId});
+}
+
+class GetReferIdEvent extends AuthEvent {
+}
+
+
+class ForgotPasswordEvent extends AuthEvent{
+  final String email;
+
+  ForgotPasswordEvent({required this.email});
+}
+
+class ConfirmPasswordEvent extends AuthEvent{
+  final String email;
+  final String password;
+  final String code;
+
+  ConfirmPasswordEvent({required this.email, required this.password, required this.code});
 }

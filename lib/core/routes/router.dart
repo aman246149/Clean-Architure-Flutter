@@ -1,15 +1,14 @@
-import 'package:auto_route/annotations.dart';
+import 'package:architecture/core/routes/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 
-import '../../features/auth/screens/login.dart';
-import '../../features/auth/screens/verify_otp.dart';
-import '../../features/onboarding/screens/onboarding.dart';
-import '../../features/splashScreen/splash_screen.dart';
+@AutoRouterConfig(replaceInRouteName: 'Screen,Route')
+class AppRouter extends $AppRouter {
+  @override
+  RouteType get defaultRouteType => const RouteType.adaptive();
+  @override
+  final List<AutoRoute> routes = [
+    AutoRoute(page: SplashRoute.page, initial: true),
 
-@AdaptiveAutoRouter(replaceInRouteName: 'Screen', routes: [
-  AutoRoute(path: '', page: SplashScreen, initial: true),
-  AutoRoute(path: '', page: LoginScreen),
-  AutoRoute(path: '', page: OnBoardingScreen),
-  AutoRoute(path: '', page: VerifyOtp),
-])
-class $AppRouter {}
+   
+  ];
+}

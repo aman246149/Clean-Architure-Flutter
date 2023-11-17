@@ -9,47 +9,40 @@ abstract class AuthState extends Equatable {
 
 class AuthInitial extends AuthState {}
 
-class UpdatedCurrentIndexState extends AuthState {
-  final int index;
-
-  const UpdatedCurrentIndexState(this.index);
-
-  @override
-  List<Object> get props => [index];
-}
-
-class ShowHideBottamBarState extends AuthState {
+class ShowHideBottomBarState extends AuthState {
   final bool isShow;
   final DateTime dateTime;
-  const ShowHideBottamBarState(this.isShow, this.dateTime);
+  const ShowHideBottomBarState(this.isShow, this.dateTime);
 
   @override
   List<Object> get props => [dateTime, isShow];
 }
 
-class SignUpLoadingState extends AuthState {}
-
-class SignUpSuccessState extends AuthState {}
-
 class AuthErrorState extends AuthState {
   final String error;
 
   const AuthErrorState(this.error);
-
 }
 
+class UnAuthenticatedAuthState extends AuthState {}
 
-class VerifyDataLoadingState extends AuthState{}
-class VerifyDataSuccessState extends AuthState{}
+class UpdatedNavigationState extends AuthState {
+  final int index;
+  final DateTime dateTime;
+  const UpdatedNavigationState(this.index, this.dateTime);
 
-class VerifyCodeLoadingState extends AuthState{}
-class VerifyCodeSuccessState extends AuthState{}
+  @override
+  List<Object> get props => [dateTime];
+}
 
-class SignInLoadingState extends AuthState{}
-class SignInSuccessState extends AuthState{}
+class AuthSuccessState extends AuthState {}
 
-class ForgotPasswordLoadingState extends AuthState{}
-class ForgotPasswordSuccessFullState extends AuthState{}
+class OtpSuccessState extends AuthState {}
 
-class VerifyNewPasswordLoadingState extends AuthState{}
-class VerifyNewPasswordSuccessFullState extends AuthState{}
+class RegistrationSuccessState extends AuthState {}
+
+class AuthLoadingState extends AuthState {}
+
+class ForgotPasswordSuccessState extends AuthState{}
+
+class ConfirmPasswordSuccessState extends AuthState{}

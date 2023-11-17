@@ -51,7 +51,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 child: PrimaryButton(text: "Get Started",
                           icon:const Icon(Icons.arrow_forward,color: AppColors.white,size: 20,),
                           onTap: () {
-                          context.router.push(const LoginScreenRoute());
+                          // context.router.push(const LoginScreenRoute());
                         },
                       ),
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Hspace extends StatelessWidget {
   final double hspace;
@@ -7,7 +8,9 @@ class Hspace extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: hspace,
+      width:
+      ScreenUtil().setWidth(hspace)
+       
     );
   }
 }

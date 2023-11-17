@@ -1,17 +1,20 @@
 import 'dart:async';
 
 import 'package:architecture/core/bloc/auth/auth_bloc.dart';
+import 'package:architecture/core/routes/router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:logger/logger.dart';
 
 import 'core/dependencyInjection/di.dart';
 import 'core/routes/router.gr.dart';
 import 'core/theme/apptheme.dart';
 
+var logger = Logger();
 
 
 Future<void> main() async {
@@ -39,7 +42,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp.router(
         title: 'Flutter Demo',
         routerDelegate: AutoRouterDelegate(_appRouter,
-            initialRoutes: [const OnBoardingScreenRoute()]),
+            initialRoutes: []),
         routeInformationParser: _appRouter.defaultRouteParser(),
         theme: AppTheme.theme,
         debugShowCheckedModeBanner: false,

@@ -1,10 +1,13 @@
 import 'dart:developer';
 
 import 'package:architecture/core/constants/app_constants.dart';
+import 'package:architecture/main.dart';
 import 'package:dio/dio.dart';
+import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:localstore/localstore.dart';
 
+import '../routes/router.dart';
 
 @module
 abstract class NetworkModule {
@@ -22,7 +25,7 @@ abstract class NetworkModule {
       ..interceptors.add(InterceptorsWrapper(
         onRequest: (options, handler) {
           if (options.data is FormData) {
-            // options.headers = {'Content-Type': 'multipart/form-data'};
+            options.headers = {'Content-Type': 'multipart/form-data'};
           }
           handler.next(options);
         },
@@ -35,22 +38,21 @@ abstract class NetworkModule {
             log("Getting Token");
             // var data =
             //     await localstore.collection("auth").doc("tokenData").get();
-            var bearerTokenData = await localstore
-                .collection("auth")
-                .doc("bearerTokenData")
-                .get();
+            var bearerTokenData =
+                await localstore.collection("auth").doc("tokenData").get();
             // var accessToken = data?[AppConstants.token];
+            print(bearerTokenData);
             var bearerToken = bearerTokenData?[AppConstants.token];
             if (bearerToken != null) {
               // options.headers.putIfAbsent('X-Auth-Token', () => "$accessToken");
               options.headers
-                  .putIfAbsent("Authorization", () => "$bearerToken");
+                  .putIfAbsent("Authorization", () => "Bearer $bearerToken");
               // log("X auth token ${options.headers.containsKey("X-Auth-Token")}");
-              print(
+              logger.d(
                   "Authorizations ${options.headers.containsKey("Authorization")}");
-              print(options.headers.toString());
+              logger.d(options.headers.toString());
             } else {
-              print('Auth token is null');
+              logger.d('Auth token is null');
             }
 
             handler.next(options);
@@ -59,15 +61,17 @@ abstract class NetworkModule {
       )
       ..interceptors
           .add(InterceptorsWrapper(onError: ((DioError e, handler) async {
-        print(e.response?.data);
-        print(e.response?.data.runtimeType);
-        if (e.response?.statusCode == 401) {
+        logger.e(e.response?.toString());
+        // debugPrint(e.response?.data.runtimeType.toString());
+        if (e.response!.data["message"].toString().contains("Token expired") ||
+            e.response?.statusCode == 401 ||
+            e.response?.statusCode == 403) {
           // await localstore.collection("auth").doc("tokenData").delete();
           Localstore.instance
               .collection("auth")
               .doc("bearerTokenData")
               .delete();
-          // GetIt.I<AppRouter>().replaceAll([const LoginScreenRoute()]);
+          // GetIt.I<AppRouter>().replaceAll([const LoginRoute()]);
           return;
         }
         if (e.response?.data is String) {
@@ -77,6 +81,7 @@ abstract class NetworkModule {
             "message": "Some error occurred. Please try again later."
           };
         }
+        logger.e(e);
         handler.next(e);
       })));
     return dio;
