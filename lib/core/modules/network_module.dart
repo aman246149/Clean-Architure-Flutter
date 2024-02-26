@@ -1,13 +1,11 @@
 import 'dart:developer';
 
-import 'package:architecture/core/constants/app_constants.dart';
-import 'package:architecture/main.dart';
 import 'package:dio/dio.dart';
-import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:localstore/localstore.dart';
 
-import '../routes/router.dart';
+import '../../main.dart';
+import '../constants/app_constants.dart';
 
 @module
 abstract class NetworkModule {

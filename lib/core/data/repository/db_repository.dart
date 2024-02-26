@@ -1,6 +1,8 @@
-import 'package:architecture/core/constants/app_constants.dart';
-import 'package:architecture/core/data/db/db_client.dart';
+
+import 'package:bluethunder/core/data/db/db_client.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../constants/app_constants.dart';
 
 @lazySingleton
 class DatabaseRepository {

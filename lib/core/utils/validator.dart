@@ -1,4 +1,4 @@
-import 'package:architecture/core/utils/common_methods.dart';
+import 'package:bluethunder/core/utils/common_methods.dart';
 import 'package:flutter/services.dart';
 
 class Validator {

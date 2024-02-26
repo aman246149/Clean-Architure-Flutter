@@ -1,8 +1,9 @@
 
-import 'package:architecture/core/presentation/widgets/appbar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+
+import 'appbar.dart';
 
 @RoutePage()
 class InAppWeb extends StatefulWidget {

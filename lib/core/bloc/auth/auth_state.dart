@@ -36,13 +36,3 @@ class UpdatedNavigationState extends AuthState {
 }
 
 class AuthSuccessState extends AuthState {}
-
-class OtpSuccessState extends AuthState {}
-
-class RegistrationSuccessState extends AuthState {}
-
-class AuthLoadingState extends AuthState {}
-
-class ForgotPasswordSuccessState extends AuthState{}
-
-class ConfirmPasswordSuccessState extends AuthState{}

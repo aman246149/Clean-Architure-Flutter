@@ -1,10 +1,11 @@
 import 'dart:io';
 
-import 'package:architecture/main.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import 'package:image_picker/image_picker.dart';
+
+import '../../main.dart';
 
 class ImagePickerUtil {
   XFile? _selectedImagePath = XFile("");

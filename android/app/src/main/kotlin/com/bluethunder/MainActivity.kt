@@ -1,4 +1,4 @@
-package com.picatech
+package com.bluethunder
 
 import io.flutter.embedding.android.FlutterActivity
 
