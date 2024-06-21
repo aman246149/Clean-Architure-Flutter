@@ -1,7 +1,6 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_it/get_it.dart';
 import '../constants/images.dart';
@@ -10,7 +9,7 @@ import '../presentation/widgets/vspace.dart';
 import 'loader.dart';
 
 // ignore: constant_identifier_names
-enum ScreenType { EVENT, GROUPBYIN, STCOINS }
+
 
 String? capitalizeFirstLetter(String? input) {
   if (input == null || input.isEmpty) {

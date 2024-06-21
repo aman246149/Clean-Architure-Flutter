@@ -1,37 +1,37 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../main.dart';
+
 @lazySingleton
-class AppBlocObserver extends BlocObserver{
-     @override
+class AppBlocObserver extends BlocObserver {
+  @override
   void onEvent(Bloc bloc, Object? event) {
     super.onEvent(bloc, event);
-    debugPrint(event.toString());
+    logger.i(event.toString());
   }
 
   @override
   void onChange(BlocBase bloc, Change change) {
     super.onChange(bloc, change);
-    debugPrint(change.toString());
+    logger.i(change.toString());
   }
 
   @override
   void onCreate(BlocBase bloc) {
     super.onCreate(bloc);
-    debugPrint(bloc.toString());
+    logger.i(bloc.toString());
   }
 
   @override
   void onTransition(Bloc bloc, Transition transition) {
     super.onTransition(bloc, transition);
-    debugPrint(transition.toString());
+    logger.i(transition.toString());
   }
 
   @override
   void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
-    debugPrint(error.toString());
+    logger.i(error.toString());
     super.onError(bloc, error, stackTrace);
   }
 }

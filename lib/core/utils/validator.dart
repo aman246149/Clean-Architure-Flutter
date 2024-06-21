@@ -5,10 +5,8 @@ class Validator {
 
     static bool checkCommonEmail(String emailToCheck){
       if (commonEmailDomains.contains(emailToCheck.split('@')[1])) {
-    print('Email domain is in the common list.');
     return true;
   } else {
-    print('Email domain is not in the common list.');
     return false;
   }
   }

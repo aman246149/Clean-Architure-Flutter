@@ -1,4 +1,3 @@
-
 import 'package:injectable/injectable.dart';
 
 import '../../data/repository/auth_repository.dart';
@@ -23,6 +22,4 @@ class AuthUseCase {
       rethrow;
     }
   }
-
-  
 }

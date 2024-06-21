@@ -39,7 +39,7 @@ abstract class NetworkModule {
             var bearerTokenData =
                 await localstore.collection("auth").doc("tokenData").get();
             // var accessToken = data?[AppConstants.token];
-            print(bearerTokenData);
+            logger.i(bearerTokenData);
             var bearerToken = bearerTokenData?[AppConstants.token];
             if (bearerToken != null) {
               // options.headers.putIfAbsent('X-Auth-Token', () => "$accessToken");
