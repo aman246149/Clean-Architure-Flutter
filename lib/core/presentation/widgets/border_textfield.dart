@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
 // ignore: must_be_immutable
 class BorderedTextFormField extends StatelessWidget {
   final String hintText;
@@ -26,8 +25,17 @@ class BorderedTextFormField extends StatelessWidget {
   final int? minLines;
   final Color? borderColor;
   final Function(String)? onFieldSubmitted;
+  final Function()? onTap;
+  final TextStyle? textStyle;
+  final EdgeInsets? contentPadding;
+  final bool isBuiltCounterRequired;
+  final bool readOnly;
+  final TextAlign? textAlign;
   const BorderedTextFormField(
-      {required this.hintText,
+      {this.readOnly = false,
+      required this.hintText,
+      this.isBuiltCounterRequired = false,
+      this.onTap,
       this.borderColor,
       this.controller,
       this.validator,
@@ -40,7 +48,7 @@ class BorderedTextFormField extends StatelessWidget {
       this.underlinedBorder = false,
       this.noBorder = false,
       this.enabled = true,
-      Key? key,
+      super.key,
       this.maxline = 1,
       this.minLines,
       this.suffix,
@@ -48,18 +56,35 @@ class BorderedTextFormField extends StatelessWidget {
       this.inputFormatters,
       this.hintStyle,
       this.focusNode,
-      this.onFieldSubmitted})
-      : super(key: key);
+      this.onFieldSubmitted,
+      this.textStyle,
+      this.contentPadding,
+      this.textAlign = TextAlign.start});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onTap: onTap,
+      readOnly: readOnly,
+      scrollPadding:
+          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       focusNode: focusNode,
+      textAlign: textAlign!,
+      buildCounter: isBuiltCounterRequired
+          ? (BuildContext context,
+              {required int currentLength,
+              required bool isFocused,
+              required int? maxLength}) {
+              return Text(
+                  "${currentLength.toString()}/${maxLength.toString()}");
+            }
+          : null,
       onFieldSubmitted: onFieldSubmitted,
-      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-          color: Colors.black.withOpacity(0.7),
-          fontSize: 16.sp,
-          fontWeight: FontWeight.w500),
+      style: textStyle ??
+          Theme.of(context).textTheme.bodyLarge?.copyWith(
+              color: Colors.black.withOpacity(0.7),
+              fontSize: 14.sp,
+              fontWeight: FontWeight.w400),
       enabled: enabled,
       minLines: minLines,
       maxLines: maxline,
@@ -73,7 +98,7 @@ class BorderedTextFormField extends StatelessWidget {
       inputFormatters: inputFormatters,
       cursorColor: Colors.black,
       decoration: InputDecoration(
-        errorMaxLines: 2,
+          errorMaxLines: 2,
           suffixIcon: suffix,
           filled: true,
           prefixIcon: prefix,
@@ -84,16 +109,16 @@ class BorderedTextFormField extends StatelessWidget {
           disabledBorder: fieldBorder(),
           border: fieldBorder(),
           focusedErrorBorder: fieldBorder(),
-          contentPadding:
+          contentPadding: contentPadding ??
               const EdgeInsets.symmetric(horizontal: 19, vertical: 12),
           isDense: true,
           hintText: hintText,
           hintStyle: hintStyle ??
               Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: hintColor ?? Colors.black.withOpacity(0.44),
+                  color: hintColor ?? const Color(0xffA9A9A9),
                   fontSize: 14.sp,
-                  fontWeight: FontWeight.w300),
-          counterText: ""),
+                  fontWeight: FontWeight.w400),
+          counterText: isBuiltCounterRequired ? "" : ""),
     );
   }
 
@@ -104,8 +129,11 @@ class BorderedTextFormField extends StatelessWidget {
   InputBorder fieldBorder() => noBorder
       ? InputBorder.none
       : underlinedBorder
-          ? const UnderlineInputBorder()
+          ? UnderlineInputBorder(
+              borderSide:
+                  BorderSide(color: borderColor ?? const Color(0xFFD4D4D4)))
           : OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
-              borderSide:  BorderSide(color:borderColor?? const Color(0xFF808080)));
+              borderSide:
+                  BorderSide(color: borderColor ?? const Color(0xFFD4D4D4)));
 }
